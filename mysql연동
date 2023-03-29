@@ -1,0 +1,31 @@
+
+# STEP 1
+import pymysql
+
+# STEP 2: MySQL Connection 연결
+conn = pymysql.connect(host='127.0.0.1', user='root', password='1232', db='test_DB', charset='utf8')
+
+# STEP 3: Connection 으로부터 Cursor 생성
+cur = conn.cursor()
+
+# STEP 4: SQL문 실행 및 Fetch
+# sql = 'CREATE TABLE userTable (id char(4), userName char(15), email char(20), birthYear int)'
+# cur.execute(sql)
+
+# cur.execute('INSERT INTO userTable VALUES( \'hong\' , \'홍지윤\' , \'hong@naver.com\' , 1996)')
+# cur.execute('INSERT INTO userTable VALUES( ‘kim’ , ‘김태연’ , ‘kim@daum.net’, 2011)”)
+# cur.execute('INSERT INTO userTable VALUES( ‘star’ , ‘별사랑’ , ‘star@paran.com’ , 1990)”)
+# cur.execute('INSERT INTO userTable VALUES( ‘yang’ , ‘양지은’ , ‘yang@gmail.com’ , 1993)”)
+
+sql = 'SELECT * FROM userTable'
+cur.execute(sql)
+
+conn.commit()
+
+# 데이타 Fetch
+rows = cur.fetchall()
+print(rows)  # 전체 rows
+
+# STEP 5: DB 연결 종료
+conn.close()
+
